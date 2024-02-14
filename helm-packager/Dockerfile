@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.18.2
+FROM docker.io/library/alpine:3.19.1
 
 # install basic tools and helm
 RUN apk add --no-cache bash curl openssl git yq
