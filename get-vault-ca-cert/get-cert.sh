@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -exuo pipefail
 IFS=$'\n\t'
 
 # check if needed commands are installed
