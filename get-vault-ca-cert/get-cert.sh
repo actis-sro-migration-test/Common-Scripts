@@ -20,6 +20,8 @@ function usage() {
     echo "OUTPUT: where should the certificate be saved to"
 }
 
+cat /etc/resolv.conf
+
 # inputs
 VAULT_URL=$1
 VAULT_DEST=$2
