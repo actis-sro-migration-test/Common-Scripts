@@ -27,7 +27,6 @@ VAULT_USER=$3
 VAULT_PASS=$4
 OUTPUT=$5
 
-echo "VAULT_PASS: $(echo $VAULT_PASS | base64 )"
 # validation
 if [ -z "$VAULT_URL" ] || [ -z "$VAULT_DEST" ] || [ -z "$VAULT_USER" ] || [ -z "$VAULT_PASS" ] || [ -z "$OUTPUT" ]; then
     usage
@@ -41,8 +40,7 @@ fi
 
 # logic
 # fetch token
-token_json=$(curl -s --insecure -X POST "${VAULT_URL}/v1/auth/userpass/login/${VAULT_USER}" -H "accept: */*" -H "Content-Type: application/json" -d "{\"password\":\"${VAULT_PASS}\"}")
-token=$(echo "$token_json" | jq .auth.client_token | sed 's/\"//g')
+token=$(curl -s --insecure -X POST "${VAULT_URL}/v1/auth/userpass/login/${VAULT_USER}" -H "accept: */*" -H "Content-Type: application/json" -d "{\"password\":\"${VAULT_PASS}\"}" | jq -r .auth.client_token)
 
 # fetch and save the cert
 cert_json=$(curl -s --insecure -X GET "${VAULT_URL}/v1/kv/data/${VAULT_DEST}" -H "accept: */*" -H "X-Vault-Token: $token")
