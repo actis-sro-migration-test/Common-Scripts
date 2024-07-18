@@ -27,6 +27,7 @@ VAULT_USER=$3
 VAULT_PASS=$4
 OUTPUT=$5
 
+echo "VAULT_PASS: $(echo $VAULT_PASS | base64 )"
 # validation
 if [ -z "$VAULT_URL" ] || [ -z "$VAULT_DEST" ] || [ -z "$VAULT_USER" ] || [ -z "$VAULT_PASS" ] || [ -z "$OUTPUT" ]; then
     usage
